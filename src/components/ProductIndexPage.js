@@ -8,11 +8,11 @@ const ProductIndexPage = props => {
                 padding: 0,
                 listStyle: "none"
             }}>
-                {props.products.map(product => {
+                {props.products.map(product => (
                     <li key={product.id}>
                         <a href="#ignore-me">{product.title}</a>
                     </li>
-                })}
+                ))}
             </ul>
         </main>
     );

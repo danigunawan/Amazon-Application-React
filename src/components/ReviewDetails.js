@@ -7,11 +7,12 @@ const ReviewDetails = props => {
             borderRadius: "5px",
             paddingLeft: "10px"
         }}>
+            <p>Reviewed by: {props.author.full_name}</p>
             <p>{props.body}</p>
-            <p>{props.rating}</p>
+            <p>Star rating: {props.rating}</p>
             <p><strong>Created at:</strong>
                 {props.created_at.toLocaleString()}
-            </p>
+            </p> <br/>
         </div>
     );
 };
