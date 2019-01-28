@@ -9,9 +9,10 @@ import productData from "../productData";
 const App = () => {
     return (
         <div>
-            {/* <ProductIndexPage products={productsData} /> */}
+            <ProductIndexPage products={productsData} />
             <ProductShowPage product={productData} />
         </div>
     );
 };
+
 export default App;
