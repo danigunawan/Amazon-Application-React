@@ -4,9 +4,11 @@ const ReviewDetails = props => {
     return (
         <div style={{
             backgroundColor: "whitesmoke",
-            borderRadius: "5px",
+            borderRadius: "10px",
+            margin: "10px",
             paddingLeft: "10px"
         }}>
+            <br/>
             <p>Reviewed by: {props.author.full_name}</p>
             <p>{props.body}</p>
             <p>Star rating: {props.rating}</p>

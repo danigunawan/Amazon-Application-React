@@ -12,7 +12,7 @@ const ProductDetails = props => {
             <p>{props.author.full_name}</p>
             <p>Seller can be reached at: {props.author.email}</p>
             <p>
-                <small>Created: {props.created_at.toLocaleString()}</small> <br/>
+                <small>Created: {props.created_at.toLocaleString()}</small> •
                 <small>Last Edited: {props.updated_at.toLocaleString()}</small>
             </p>
         </div>
