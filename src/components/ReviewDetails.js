@@ -1,5 +1,5 @@
 import React from "react";
-import Star from "./Star";
+import StarRating from "./StarRating";
 
 const ReviewDetails = props => {
     return (
@@ -13,7 +13,7 @@ const ReviewDetails = props => {
             <p>Reviewed by: {props.author.full_name}</p>
             <p>{props.body}</p>
             {/* <p>Star rating: {props.rating}</p> */}
-            <Star max={5} current={props.rating} />
+            <StarRating max={5} current={props.rating} />
             <p><strong>Created at:</strong>
                 {props.created_at.toLocaleString()}
             </p> <br/>

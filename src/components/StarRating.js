@@ -5,13 +5,13 @@ function StarRating(props) {
     const { max, current } = props;
     return (
       <div className="StarRating">
-        {Array.from({ length: max }).map((el, i) => {
+        {Array.from({ length: max }).map((el, index) => {
           return (
             <Star
-              key={i}
+              key={index}
               style={{
                 height: '1em',
-                color: i < current ? 'gold' : 'whitesmoke',
+                color: index < current ? 'gold' : 'blacksmoke',
               }}
             />
           );
