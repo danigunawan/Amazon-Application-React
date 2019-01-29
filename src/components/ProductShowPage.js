@@ -9,7 +9,7 @@ class ProductShowPage extends Component {
 
         this.state = {
             product: {...this.props.product}
-        }
+        };
 
         this.deleteProduct = this.deleteProduct.bind(this);
 
@@ -38,14 +38,15 @@ class ProductShowPage extends Component {
         }
         return (
             <main>
+                <h1>The product you are viewing right now is: </h1>
                 <ProductDetails {...this.state.product} />
                 <button onClick={this.deleteProduct} >Delete</button>
-                <h2>Reviews</h2>
+                <h1>Reviews</h1>
                 <ReviewList reviews={this.state.product.reviews} onReviewDeleteClick={this.deleteReview} />
             </main>
     
         );
-    }
+    };
 };
 
 export default ProductShowPage;

@@ -7,7 +7,7 @@ const ProductDetails = props => {
             borderRadius: "10px",
             paddingLeft: "5px"
         }}>
-            <h1>{props.title}</h1>
+            <h2>{props.title}</h2>
             <p>{props.description}</p>
             <p>Price: {props.price}</p>
             <p>Sale Price: {props.sale_price}</p>

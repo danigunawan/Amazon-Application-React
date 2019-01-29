@@ -1,28 +1,27 @@
 import React from "react";
+import {Table} from "react-bootstrap";
 
 const BootTable = props => {
     // console.log(props.data);
     return (
-        <table>
+        <Table striped={props.stripped} bordered={props.bordered} condensed={props.condensed} hover={props.hoverRows} >
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
+                    {Object.keys(props.tableData[0]).map((columnName) => <th>{columnName}</th> )}
                 </tr>
             </thead>
             <tbody>
-                {props.data.map(row => (
-                    <tr key={row.username} >
-                        
-                        <td>{row.firstName}</td>
-                        <td>{row.lastName}</td>
-                        <td>{row.username}</td>
+                {props.tableData.map((row, index) => (
+                    <tr key={index} >
+                        <td>{index+1}</td>
+                        {Object.keys(row).map((propName) => (
+                        <td>{row[propName]}</td>
+                        ))}
                     </tr>
                 ))}
             </tbody>
-        </table>
+        </Table>
     );
 };
 

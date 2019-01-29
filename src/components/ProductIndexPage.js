@@ -33,6 +33,7 @@ createProduct(params) {
 render() {
     return (
         <main>
+            <h1>Create a new Product to sell:</h1>
             <NewProductForm onSubmit={this.createProduct} />
             <h1>Products</h1>
             <ul style={{
