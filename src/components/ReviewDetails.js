@@ -16,7 +16,8 @@ const ReviewDetails = props => {
             <StarRating max={5} current={props.rating} />
             <p><strong>Created at:</strong>
                 {props.created_at.toLocaleString()}
-            </p> <br/>
+            </p>
+            <button onClick={() => props.onDeleteClick(props.id)} >Delete</button>
         </div>
     );
 };

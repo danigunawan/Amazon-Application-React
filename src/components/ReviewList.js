@@ -6,7 +6,7 @@ const ReviewList = props => {
         <ul>
             {props.reviews.map(review => (
                 <li key={review.id}>
-                    <ReviewDetails {...review} />
+                    <ReviewDetails {...review} onDeleteClick={(id) => props.onReviewDeleteClick(id)} />
                 </li>
             ))}
         </ul>
