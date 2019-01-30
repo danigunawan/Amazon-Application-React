@@ -11,17 +11,23 @@ import tableData from "../tableData";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAtom } from '@fortawesome/free-solid-svg-icons';
+import Fa from "./Fa";
 
 library.add(faAtom);
+
 
 const App = () => {
     // console.log(tableData);
     return (
         <div>
-            <a href="" style={{padding: "0 5px"}}><FontAwesomeIcon icon="" /> Amazon Application React Version<br/><br/></a>
-            <BootTable tableData={tableData} striped={true} bordered={true} condensed={false} hover={true} />
+            <span style={{padding: "5px", fontSize: "32px"}}>
+                <FontAwesomeIcon icon="atom" />
+                Amazon Application React Version
+                <Fa kind={"canadian-maple-leaf"} size={"1x"} faSpin={false} />
+            </span>
             <ProductIndexPage products={productsData} />
             <ProductShowPage product={productData} />
+            <BootTable tableData={tableData} striped={true} bordered={true} condensed={false} hover={true} />
         </div>
     );
 };

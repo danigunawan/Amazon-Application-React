@@ -8,7 +8,7 @@ const BootTable = props => {
             <thead>
                 <tr>
                     <th>#</th>
-                    {Object.keys(props.tableData[0]).map((columnName) => <th>{columnName}</th> )}
+                    {Object.keys(props.tableData[0]).map((columnName) => <th key={columnName} >{columnName}</th> )}
                 </tr>
             </thead>
             <tbody>
@@ -16,7 +16,7 @@ const BootTable = props => {
                     <tr key={index} >
                         <td>{index+1}</td>
                         {Object.keys(row).map((propName) => (
-                        <td>{row[propName]}</td>
+                        <td key={propName} >{row[propName]}</td>
                         ))}
                     </tr>
                 ))}

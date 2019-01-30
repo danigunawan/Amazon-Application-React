@@ -2,8 +2,17 @@ import React from "react";
 
 
 const Fa = props => {
+    if (!props.faSpin) {
+        return (
+            <span style={{color: "red"}} >
+                <i className={"fab " + "fa-" + props.kind + " fa-" + props.size}  ></i>
+            </span>
+        )
+    }
     return (
-        <i class={"fa " + "fa-" + props.kind}  ></i>
+        <span style={{color: "red"}} >
+            <i className={"fab " + "fa-" + props.kind + " fa-" + props.size + " fa-spin"}  ></i>
+        </span>
     );
 };
 
