@@ -1,35 +1,67 @@
-import React from "react";
+import React, { Component } from "react";
+import { Product } from "../requests";
 
-const NewProductForm = props => {
-    const handleSubmit = event => {
+class NewProductForm extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            product: null
+        }
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+
+
+    handleSubmit = event => {
         event.preventDefault();
 
         const { currentTarget } = event;
         const formData = new FormData(currentTarget);
 
-        props.onSubmit({
+        const newProduct = {
             title: formData.get("title"),
-            description: formData.get("description")
-        });
+            description: formData.get("description"),
+            price: formData.get("price")
+        };
 
+        Product.create(newProduct).then(productFromServer => {
+            // `productFromServer` is an object with the id of the product
+            // we just created
+            //   We now want to redirect the user to the ProductShowPage
+            // for the product we just created
+            //   pushing something onto the end of the history prop
+            // causes a redirect
+            //   history is a prop that is given to all components
+            // rendered by a `Route` component
+            // It is an array of every path the user has been to
+            this.props.history.push(`/products/${productFromServer.id}`);
+          });
+          
         currentTarget.reset();
     }
-
-    return (
-        <form className="ProductForm" onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="title">Title</label> <br/>
-                <input name="title" id="title" />
-            </div>
-            <div>
-                <label htmlFor="description">Description</label> <br/>
-                <textarea name="description" id="description" cols="50" rows="5"></textarea>
-            </div>
-            <div>
-                <input type="submit" valu="Submit Product" />
-            </div>
-        </form>  
-    );
+    render () {
+        return (
+            <form className="ProductForm" onSubmit={this.handleSubmit} >
+                <div>
+                    <label htmlFor="title">Title</label> <br/>
+                    <input name="title" id="title" />
+                </div>
+                <div>
+                    <label htmlFor="description">Description</label> <br/>
+                    <textarea name="description" id="description" cols="50" rows="5"></textarea>
+                </div>
+                <div>
+                    <label htmlFor="price">Price</label>
+                    <input type="price" id="price" />
+                </div>
+                <div>
+                    <input type="submit" valu="Submit Product" />
+                </div>
+            </form>  
+        );
+    }
 };
 
 export default NewProductForm;

@@ -20,9 +20,9 @@ class ProductShowPage extends Component {
     }
 
     componentDidMount() {
-        // const id = this.props.match.params.id;
+        const id = this.props.match.params.id;
 
-        Product.one(5589).then(product => {
+        Product.one(id).then(product => {
             this.setState({
                 product: product,
                 loading: false

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import NewProductForm from "./NewProductForm";
+// import NewProductForm from "./NewProductForm";
 
 import { Product } from "../requests";
+
+import { Link } from "react-router-dom";
 
 class ProductIndexPage extends Component {
 constructor(props) {
@@ -12,7 +14,7 @@ constructor(props) {
         products: null
     };
 
-    this.createProduct = this.createProduct.bind(this);
+    // this.createProduct = this.createProduct.bind(this);
 }
 
 componentDidMount() {
@@ -29,17 +31,17 @@ deleteProduct(id) {
     }))
 }
 
-createProduct(params) {
-    this.setState((state) => ({
-        products: [
-            {
-                id: Math.max(...state.products.map(p => p.id)) + 1,
-                ...params
-            },
-            ...state.products
-        ]
-    }));
-}
+// createProduct(params) {
+//     this.setState((state) => ({
+//         products: [
+//             {
+//                 id: Math.max(...state.products.map(p => p.id)) + 1,
+//                 ...params
+//             },
+//             ...state.products
+//         ]
+//     }));
+// }
 
 render() {
 
@@ -53,8 +55,9 @@ render() {
 
     return (
         <main>
-            <h1>Create a new Product to sell:</h1>
-            <NewProductForm onSubmit={this.createProduct} />
+            {/* <h1>Create a new Product to sell:</h1>
+            <NewProductForm onSubmit={this.createProduct} /> */}
+
             <h1>Products</h1>
             <ul style={{
                 padding: 0,
@@ -62,7 +65,8 @@ render() {
             }}>
                 {this.state.products.map(product => (
                     <li key={product.id}>
-                        <a href="#ignore-me">{product.title}</a> <br/>
+                        {/* <a href="#ignore-me">{product.title}</a> <br/> */}
+                        <Link to={`/products/${product.id}`}>{product.title}</Link> <br/>
                         <small>    
                             <button style={{margin: "5px"}} onClick={ event => {
                                 this.deleteProduct(product.id);
