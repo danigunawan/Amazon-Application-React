@@ -1,15 +1,26 @@
 import React, { Component } from "react";
 import NewProductForm from "./NewProductForm";
 
+import { Product } from "../requests";
+
 class ProductIndexPage extends Component {
 constructor(props) {
     super(props);
 
     this.state= {
-        products: [ ...this.props.products ]
-    }
+        // products: [ ...this.props.products ]
+        products: null
+    };
 
     this.createProduct = this.createProduct.bind(this);
+}
+
+componentDidMount() {
+    Product.all().then(products => {
+        this.setState({
+            products: products
+        });
+    });
 }
 
 deleteProduct(id) {
@@ -31,6 +42,15 @@ createProduct(params) {
 }
 
 render() {
+
+    if(!this.state.products) {
+        return (
+            <main>
+                <h1>Loading products list...</h1>
+            </main>
+        )
+    }
+
     return (
         <main>
             <h1>Create a new Product to sell:</h1>

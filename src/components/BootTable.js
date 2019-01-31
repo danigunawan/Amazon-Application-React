@@ -14,10 +14,12 @@ const BootTable = props => {
             <tbody>
                 {props.tableData.map((row, index) => (
                     <tr key={index} >
+
                         <td>{index+1}</td>
                         {Object.keys(row).map((propName) => (
                         <td key={propName} >{row[propName]}</td>
                         ))}
+                    
                     </tr>
                 ))}
             </tbody>
