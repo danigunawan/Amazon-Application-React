@@ -1,5 +1,5 @@
-import React, { Component } from "react";
 import "../styles/App.css";
+import React, { Component } from "react";
 import ProductShowPage from "./ProductShowPage";
 import ProductIndexPage from "./ProductIndexPage";
 import NewProductForm from "./NewProductForm";
@@ -14,7 +14,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 // import tableData from "../tableData";
 
 // import { Product } from "../requests";
-import { Session } from "../requests";
+// import { Session } from "../requests";
+
+
 
 // import Fa from "./Fa";
 
@@ -26,6 +28,9 @@ import { Session } from "../requests";
 // window.Product = Product;
 // window.Session = Session;
 
+import SignInPage from "./SignInPage";
+import { User } from "../requests";
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -33,24 +38,39 @@ class App extends Component {
         this.state = {
             currentUser: null
         }
+
+        this.getCurrentUser = this.getCurrentUser.bind(this);
     }
 
-    componentDidMount() {
-        Session
-        .create({email: "js@winterfell.gov", password: "daenerystargaryen"})
-        .then((user) => {
-            this.setState({
-                currentUser: user
-            });
+    getCurrentUser() {
+        User.current().then(data => {
+            const { current_user: currentUser } = data;
+
+            if (currentUser) {
+                this.setState({currentUser});
+            }
         });
     }
 
-    render () {
+    componentDidMount() {
+        // Session
+        // .create({email: "js@winterfell.gov", password: "daenerystargaryen"})
+        // .then((user) => {
+        //     this.setState({
+        //         currentUser: user
+        //     });
+        // });
 
+        this.getCurrentUser();
+    }
+
+    render () {
+        const { currentUser } = this.state;
+        console.log(this.state.currentUser);
         return (
             <BrowserRouter>
                 <div>
-                    <NavBar />
+                    <NavBar currentUser={currentUser} />
 
                     {/* <span style={{padding: "5px", fontSize: "32px"}}>
                         <FontAwesomeIcon icon="atom" />
@@ -69,9 +89,11 @@ class App extends Component {
                     <Switch>
                         <Route path="/" exact component={WelcomePage} />
                         <Route path="/products" exact component={ProductIndexPage} />
-                        <Route path="/products/new" component={NewProductForm} />
                         <Route path="/products/:id" exact component={ProductShowPage} />
                         <Route path="/productstable" exact component={BootTable} />
+                        <Route path="/products/new" component={NewProductForm} />
+                        {/* <Route path="/sign_in" component={SignInPage} /> */}
+                        <Route path="/sign_in" render={routeProps => <SignInPage {...routeProps} onSignIn={this.getCurrentUser}  />} />
                     </Switch>
                 </div>
             </BrowserRouter>

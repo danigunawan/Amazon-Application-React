@@ -1,3 +1,31 @@
 main {
     padding: 20px;
 }
+
+nav {
+    background-color: lightgrey;
+    color: whitesmoke;
+    display: flex;
+}
+
+nav > * { 
+    padding: 10px;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a.active {
+    background-color: lightsteelblue;
+}
+
+.FormErrors {
+    padding: 5px;
+    border: 1px solid blue;
+    background: lightblue;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
