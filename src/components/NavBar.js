@@ -3,21 +3,31 @@ import { NavLink } from "react-router-dom";
 
 import Fa from "./Fa";
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAtom } from '@fortawesome/free-solid-svg-icons';
+// import { library } from '@fortawesome/fontawesome-svg-core';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faAtom } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faAtom);
+// library.add(faAtom);
 
 const NavBar = props => {
-    const { currentUser } = props;
+    const { currentUser, onSignOut = () => {} } = props;
+
+    const handleSignOutClick = event => {
+        event.preventDefault();
+
+        onSignOut();
+    }
 
     return (
         <nav>
             {/* <span style={{padding: "5px", fontSize: "32px"}}> */}
-            <Fa kind={"canadian-maple-leaf"} size={"1x"} faSpin={true} />
-            {/* <a className="fa-spin" styling={{fontSize: "5px"}}><FontAwesomeIcon icon="atom" /></a> */}
-            <NavLink to="/products">Amazon Application React Version</NavLink>  
+                <Fa kind={"canadian-maple-leaf"} size={"1x"} faSpin={true} />
+            
+                {/* <a className="fa-spin" styling={{fontSize: "5px"}}>
+                    <FontAwesomeIcon icon="atom" />
+                </a> */}
+            
+                <NavLink to="/products">Amazon Application React Version</NavLink>  
             {/* </span> */}
 
             <NavLink to="/" >Home</NavLink>
@@ -29,7 +39,7 @@ const NavBar = props => {
                 currentUser ? (
                     <>
                     <span>Hi, {currentUser.full_name}</span>
-                    {/* <a href="#not-used" onClick={handleSignOutClick} >Sign Out</a> */}
+                    <a href="#not-used" onClick={handleSignOutClick} >Sign Out</a>
                     </>
                 ) : (
                     <NavLink to="/sign_in" >Sign In</NavLink>

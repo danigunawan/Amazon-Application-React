@@ -6,6 +6,8 @@ nav {
     background-color: lightgrey;
     color: whitesmoke;
     display: flex;
+
+    align-items: center;
 }
 
 nav > * { 

@@ -14,7 +14,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 // import tableData from "../tableData";
 
 // import { Product } from "../requests";
-// import { Session } from "../requests";
+import { Session } from "../requests";
 
 
 
@@ -40,6 +40,15 @@ class App extends Component {
         }
 
         this.getCurrentUser = this.getCurrentUser.bind(this);
+        this.destroySession = this.destroySession.bind(this);
+    }
+
+    destroySession() {
+        this.setState({
+            currentUser: null
+        });
+
+        Session.destroy();
     }
 
     getCurrentUser() {
@@ -70,7 +79,7 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div>
-                    <NavBar currentUser={currentUser} />
+                    <NavBar currentUser={currentUser} onSignOut={this.destroySession} />
 
                     {/* <span style={{padding: "5px", fontSize: "32px"}}>
                         <FontAwesomeIcon icon="atom" />
