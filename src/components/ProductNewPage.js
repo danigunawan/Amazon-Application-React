@@ -37,9 +37,8 @@ class ProductNewPage extends Component {
         Product
             .create(params)
             .then(data => {
+                this.props.history.push(`/products/${data.id}`);
 
-                    this.props.history.push(`/products/${data.id}`);
-                
             });
     }
 
