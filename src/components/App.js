@@ -2,7 +2,7 @@ import "../styles/App.css";
 import React, { Component } from "react";
 import ProductShowPage from "./ProductShowPage";
 import ProductIndexPage from "./ProductIndexPage";
-import NewProductForm from "./NewProductForm";
+// import NewProductForm from "./NewProductForm";
 import BootTable from "./BootTable";
 
 import NavBar from "./NavBar";
@@ -30,13 +30,16 @@ import { Session } from "../requests";
 
 import SignInPage from "./SignInPage";
 import { User } from "../requests";
+import ProductNewPage from "./ProductNewPage";
+import AuthRoute from "./AuthRoute";
 
 class App extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            currentUser: null
+            currentUser: null,
+            loading: true
         }
 
         this.getCurrentUser = this.getCurrentUser.bind(this);
@@ -58,6 +61,7 @@ class App extends Component {
             if (currentUser) {
                 this.setState({currentUser});
             }
+            this.setState({loading: false});
         });
     }
 
@@ -74,7 +78,7 @@ class App extends Component {
     }
 
     render () {
-        const { currentUser } = this.state;
+        const { currentUser, loading } = this.state;
         console.log(this.state.currentUser);
         return (
             <BrowserRouter>
@@ -95,15 +99,24 @@ class App extends Component {
                     {/* <ProductIndexPage /> */}
                     {/* <ProductShowPage product={productData} /> */}
                     {/* <ProductShowPage /> */}
-                    <Switch>
-                        <Route path="/" exact component={WelcomePage} />
-                        <Route path="/products" exact component={ProductIndexPage} />
-                        <Route path="/products/:id" exact component={ProductShowPage} />
-                        <Route path="/productstable" exact component={BootTable} />
-                        <Route path="/products/new" component={NewProductForm} />
-                        {/* <Route path="/sign_in" component={SignInPage} /> */}
-                        <Route path="/sign_in" render={routeProps => <SignInPage {...routeProps} onSignIn={this.getCurrentUser}  />} />
-                    </Switch>
+                    {
+                        loading ? (
+                            <main>
+                                <h1>Loading...</h1>
+                            </main>
+                        ) : (
+                            <Switch>
+                                {/* <Route path="/products/new" component={NewProductForm} /> */}
+                                <AuthRoute isAuth={currentUser} path="/products/new" component={ProductNewPage} />
+                                <Route path="/" exact component={WelcomePage} />
+                                <Route path="/products" exact component={ProductIndexPage} />
+                                <Route path="/products/:id" exact component={ProductShowPage} />
+                                {/* <Route path="/sign_in" component={SignInPage} /> */}
+                                <Route path="/sign_in" render={routeProps => <SignInPage {...routeProps} onSignIn={this.getCurrentUser}  />} />
+                                <Route path="/productstable" exact component={BootTable} />
+                            </Switch>
+                        )
+                    }
                 </div>
             </BrowserRouter>
         );

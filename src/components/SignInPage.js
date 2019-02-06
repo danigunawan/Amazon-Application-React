@@ -41,7 +41,7 @@ class SignInPage extends Component {
         return (
             <main>
                 <h1>Sign In</h1>
-                <form onSubmit={this.createSession} >
+                <form style={{margin: "5px"}} className="form-group" onSubmit={this.createSession} >
                     {
                         errors.length > 0 ? (
                             <div className="FormErrors">
@@ -51,15 +51,17 @@ class SignInPage extends Component {
                     }
 
                     <div>
-                        <label htmlFor="email">Email</label> <br/>
-                        <input type="email" name="email" id="email"/>
+                        <label className="control-label" htmlFor="email">Email</label> <br/>
+                        <input className="form-control" type="email" name="email" id="email"/>
                     </div>
                     <div>
-                        <label htmlFor="password">Password</label> <br/>
-                        <input type="password" name="password" id="password"/>
+                        <label className="control-label" htmlFor="password">Password</label> <br/>
+                        <input className="form-control" type="password" name="password" id="password"/>
                     </div>
-                    <input type="submit" value="Sign In" />
-                    
+                    <br/>
+                    <div>
+                        <input className="btn btn-primary" type="submit" value="Sign In" />
+                    </div>  
                 </form>
             </main>
         );
