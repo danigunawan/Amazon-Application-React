@@ -9,6 +9,7 @@ class ProductNewPage extends Component {
 
         this.state = {
             // product: null
+            error: []
         };
 
         // this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,8 +38,11 @@ class ProductNewPage extends Component {
         Product
             .create(params)
             .then(data => {
-                this.props.history.push(`/products/${data.id}`);
-
+                if (data.errors) {
+                    this.setState({errors: data.errors})
+                } else {
+                    this.props.history.push(`/products/${data.id}`);
+                }
             });
     }
 
@@ -46,7 +50,7 @@ class ProductNewPage extends Component {
         return (
             <main>
                 <h1>New Product Form Page</h1>
-                <NewProductForm onSubmit={this.createProduct} /> 
+                <NewProductForm onSubmit={this.createProduct} errors={this.state.errors} /> 
                 {/* <form style={{margin: "5px"}} className="ProductForm form-group" onSubmit={this.handleSubmit} >
                     <div>
                         <label className="label-control" htmlFor="title">Title</label>

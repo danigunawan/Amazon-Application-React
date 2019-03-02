@@ -33,6 +33,8 @@ import { User } from "../requests";
 import ProductNewPage from "./ProductNewPage";
 import AuthRoute from "./AuthRoute";
 
+import NotFoundPage from "./NotFoundPage"
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -114,6 +116,7 @@ class App extends Component {
                                 {/* <Route path="/sign_in" component={SignInPage} /> */}
                                 <Route path="/sign_in" render={routeProps => <SignInPage {...routeProps} onSignIn={this.getCurrentUser}  />} />
                                 <Route path="/productstable" exact component={BootTable} />
+                                <Route component={NotFoundPage} />
                             </Switch>
                         )
                     }
